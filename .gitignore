@@ -1,0 +1,43 @@
+# built application files
+*.apk
+*.ap_
+
+# files for the dex VM
+*.dex
+
+# Java class files
+*.class
+
+# generated files
+android_app/bin/
+android_app/gen/
+
+# Local configuration file (sdk path, etc)
+local.properties
+
+# Eclipse project files
+.project
+.checkstyle
+android_app/.settings/
+proguard-project.txt
+
+# Android NDK Files
+
+#android studio
+proguard/
+*.iml
+*.ipr
+*.iws
+android_app/.idea/
+android_app/.idea/workspace.xml
+android_app/.idea/tasks.xml
+android_app/.idea/libraries/
+android_app/.gradle/
+android_app/app/build/
+android_app/build/
+android_app/captures/
+
+#NDK BUild
+*.so
+*.o
+*.o.d
