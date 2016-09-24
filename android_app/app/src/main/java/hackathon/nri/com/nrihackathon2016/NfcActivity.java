@@ -11,6 +11,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.TextView;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
 import java.util.ArrayList;
 
 public class NfcActivity extends AppCompatActivity {
@@ -57,11 +64,7 @@ public class NfcActivity extends AppCompatActivity {
             // NFCからID情報取得
             byte[] ids = intent.getByteArrayExtra(NfcAdapter.EXTRA_ID);
             infoList.add("IDbytes:" + ids.length);
-            StringBuilder tagId = new StringBuilder();
-            for (int i=0; i<ids.length; i++) {
-              Log.d(Config.TAG, "i: " + i + " b:" + ids[i]);
-              tagId.append(String.format("%02x", ids[i] & 0xff));
-            }
+            String tagId = ApplicationHelper.toHex(ids);
             Log.d(Config.TAG, "id: " + tagId.toString());
             infoList.add("nfcId:" + tagId.toString());
 
@@ -96,8 +99,27 @@ public class NfcActivity extends AppCompatActivity {
         }
 //        Bundle intentData = intent.getExtras();
 //        ApplicationHelper.logBundleData(intentData);
+        sendChargeRequest();
     }
 
+    private void sendChargeRequest(){
+        RequestQueue queue = Volley.newRequestQueue(this);
+
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, Config.ROOT_URL + "rest/pay?charge=1",
+            new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+                    Log.d(Config.TAG, "res:" + response);
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Log.d(Config.TAG, "error:" + error.getMessage());
+                }
+            }
+        );
+        queue.add(stringRequest);
+    }
 
     @Override
     public void onNewIntent(Intent intent) {
