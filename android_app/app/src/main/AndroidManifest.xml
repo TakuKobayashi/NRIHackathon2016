@@ -17,8 +17,17 @@
         android:supportsRtl="true"
         android:hardwareAccelerated="true">
 
+        <!-- FacebookアプリのアプリケーションIDを設定 -->
+        <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>
+
         <!-- ハードウェアアクセラレーションはAndroid3.0以降の端末に搭載されているGPUを使用して画面描画を高速に行う技術です。 -->
         <!-- android:hardwareAccelerated="true" -->
+
+        <activity android:name="com.facebook.FacebookActivity"
+            android:configChanges=
+                "keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:label="@string/app_name" />
 
         <activity
             android:name=".MainActivity"

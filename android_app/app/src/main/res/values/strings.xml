@@ -1,4 +1,5 @@
 <resources>
-    <string name="app_name">NRIHackathon2016</string>
+    <string name="facebook_app_id">326417791083042</string>
     <string name="nfc_activity_title">NFCActivity</string>
+    <string name="app_name">NRIHackathon2016</string>
 </resources>
