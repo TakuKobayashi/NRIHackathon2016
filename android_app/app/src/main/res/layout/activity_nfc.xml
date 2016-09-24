@@ -10,6 +10,7 @@
     tools:context="hackathon.nri.com.nrihackathon2016.MainActivity">
 
     <TextView
+        android:id="@+id/ncfinfo_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/nfc_activity_title" />

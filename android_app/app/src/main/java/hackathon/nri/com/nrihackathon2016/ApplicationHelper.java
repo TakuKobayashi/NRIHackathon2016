@@ -151,6 +151,17 @@ public class ApplicationHelper {
 		}
 	}
 
+	public static String toHex(byte[] bytes) {
+		StringBuilder sbuf = new StringBuilder();
+		for (int i = 0; i < bytes.length; i++) {
+			String hex = "0" + Integer.toString((int) bytes[i] & 0x0ff, 16);
+			if (hex.length() > 2)
+				hex = hex.substring(1, 3);
+			sbuf.append(" " + i + ":" + hex);
+		}
+		return sbuf.toString();
+	}
+
 	public static String encodeToJPEGbase64(Bitmap image)
 	{
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
