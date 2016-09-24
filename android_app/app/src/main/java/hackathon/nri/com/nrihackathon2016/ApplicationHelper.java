@@ -7,7 +7,6 @@ import android.content.pm.PackageManager;
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
-import android.hardware.Camera;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Base64;
@@ -142,6 +141,14 @@ public class ApplicationHelper {
 			out.append(new String(b, 0, n));
 		}
 		return out.toString();
+	}
+
+	public static void logBundleData(Bundle data) {
+		Set<String> keys = data.keySet();
+		for (String key : keys) {
+			Object o = data.get(key);
+			Log.d(Config.TAG, "key:" + key + " class:" + o.getClass().getName());
+		}
 	}
 
 	public static String encodeToJPEGbase64(Bitmap image)
