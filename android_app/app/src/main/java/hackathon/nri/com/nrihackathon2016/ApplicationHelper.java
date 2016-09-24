@@ -11,6 +11,7 @@ import android.hardware.Camera;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Base64;
+import android.util.Log;
 import android.view.Surface;
 import android.webkit.WebView;
 import android.widget.ImageView;

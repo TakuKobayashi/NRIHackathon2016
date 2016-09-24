@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">NRIHackathon2016</string>
+    <string name="nfc_activity_title">NFCActivity</string>
 </resources>
