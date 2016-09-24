@@ -24,8 +24,6 @@ import com.android.volley.toolbox.Volley;
 import java.util.ArrayList;
 
 public class NfcActivity extends Activity {
-    private static int REQUEST_CODE = 1;
-
     private IntentFilter[] intentFiltersArray;
     private String[][] techListsArray;
     private NfcAdapter mAdapter;
@@ -37,7 +35,6 @@ public class NfcActivity extends Activity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nfc);
-        ApplicationHelper.requestPermissions(this, REQUEST_CODE);
 
         TextView nfcinfo = (TextView) findViewById(R.id.ncfinfo_text);
 /*
