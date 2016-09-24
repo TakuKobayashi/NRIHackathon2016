@@ -1,5 +1,6 @@
 package hackathon.nri.com.nrihackathon2016;
 
+import android.app.Activity;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -9,6 +10,8 @@ import android.nfc.tech.NfcF;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.TextView;
 
 import com.android.volley.Request;
@@ -20,7 +23,7 @@ import com.android.volley.toolbox.Volley;
 
 import java.util.ArrayList;
 
-public class NfcActivity extends AppCompatActivity {
+public class NfcActivity extends Activity {
     private static int REQUEST_CODE = 1;
 
     private IntentFilter[] intentFiltersArray;
@@ -30,6 +33,8 @@ public class NfcActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nfc);
         ApplicationHelper.requestPermissions(this, REQUEST_CODE);

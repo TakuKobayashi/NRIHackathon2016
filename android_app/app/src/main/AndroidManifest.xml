@@ -14,19 +14,23 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:hardwareAccelerated="true"
-        android:theme="@style/AppTheme">
+        android:hardwareAccelerated="true">
 
         <!-- ハードウェアアクセラレーションはAndroid3.0以降の端末に搭載されているGPUを使用して画面描画を高速に行う技術です。 -->
         <!-- android:hardwareAccelerated="true" -->
 
-        <activity android:name=".MainActivity">
+        <activity
+            android:name=".MainActivity"
+            android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".NfcActivity">
+        <activity
+            android:name=".NfcActivity"
+            android:theme="@android:style/Theme.Translucent">
+
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
