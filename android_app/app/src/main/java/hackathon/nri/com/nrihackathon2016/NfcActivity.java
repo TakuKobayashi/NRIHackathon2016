@@ -8,6 +8,7 @@ import android.nfc.NfcAdapter;
 import android.nfc.Tag;
 import android.nfc.tech.NfcF;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Window;
@@ -102,6 +103,16 @@ public class NfcActivity extends Activity {
 //        Bundle intentData = intent.getExtras();
 //        ApplicationHelper.logBundleData(intentData);
         sendChargeRequest();
+
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if(!isFinishing()){
+                    finish();
+                }
+            }
+        }, 2000);
     }
 
     private void sendChargeRequest(){
