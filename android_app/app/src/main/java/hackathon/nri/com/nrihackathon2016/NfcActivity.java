@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.media.MediaPlayer;
 import android.nfc.NfcAdapter;
 import android.nfc.Tag;
 import android.nfc.tech.NfcF;
@@ -117,6 +118,15 @@ public class NfcActivity extends Activity {
                 }
             }
         }, 2000);
+
+        MediaPlayer se = MediaPlayer.create(this, R.raw.pay);
+        se.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mp) {
+                mp.release();
+            }
+        });
+        se.start();
     }
 
     private void sendChargeRequest(){
