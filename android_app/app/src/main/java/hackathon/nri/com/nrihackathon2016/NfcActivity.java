@@ -42,7 +42,7 @@ public class NfcActivity extends Activity {
         ImageView bg = (ImageView) findViewById(R.id.nfc_bg);
         bg.setImageResource(R.mipmap.paybg);
 
-        TextView nfcinfo = (TextView) findViewById(R.id.ncfinfo_text);
+//        TextView nfcinfo = (TextView) findViewById(R.id.ncfinfo_text);
 /*
         pendingIntent = PendingIntent.getActivity(this, 0, new Intent(this, getClass()).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP), 0);
 
@@ -72,7 +72,10 @@ public class NfcActivity extends Activity {
             // NFCからID情報取得
             byte[] ids = intent.getByteArrayExtra(NfcAdapter.EXTRA_ID);
             infoList.add("IDbytes:" + ids.length);
-            String tagId = ApplicationHelper.toHex(ids);
+            StringBuilder tagId = new StringBuilder();
+            for (int i=0; i<ids.length; i++) {
+                tagId.append(String.format("%02x", ids[i] & 0xff));
+            }
             Log.d(Config.TAG, "id: " + tagId.toString());
             infoList.add("nfcId:" + tagId.toString());
 
@@ -103,11 +106,21 @@ public class NfcActivity extends Activity {
             for(FericaRecord fr : result){
                 infoList.add(fr.toString());
             }
-            nfcinfo.setText(ApplicationHelper.join(infoList, "\n"));
+            //nfcinfo.setText(ApplicationHelper.join(infoList, "\n"));
+
+            if(tagId.toString().equals("011401141012f917")) {
+                sendChargeRequest(1000);
+            }else if(tagId.toString().equals("011203123814110f")){
+                sendChargeRequest(2000);
+            }else if(tagId.toString().equals("0101011228075707")){
+                sendChargeRequest(3000);
+            }else{
+                sendChargeRequest(1);
+            }
+
         }
 //        Bundle intentData = intent.getExtras();
 //        ApplicationHelper.logBundleData(intentData);
-        sendChargeRequest();
 
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
@@ -129,10 +142,10 @@ public class NfcActivity extends Activity {
         se.start();
     }
 
-    private void sendChargeRequest(){
+    private void sendChargeRequest(int value){
         RequestQueue queue = Volley.newRequestQueue(this);
 
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, Config.ROOT_URL + "rest/pay?charge=1",
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, Config.ROOT_URL + "rest/pay?charge=" + value,
             new Response.Listener<String>() {
                 @Override
                 public void onResponse(String response) {
