@@ -2,6 +2,7 @@ package hackathon.nri.com.nrihackathon2016;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
@@ -66,8 +67,11 @@ public class TopActivity extends Activity {
         ImageView card_image = (ImageView) findViewById(R.id.card_image);
         card_image.setImageResource(R.mipmap.top_card);
 
+        ImageView friends_list = (ImageView) findViewById(R.id.friends_list);
+        friends_list.setImageResource(R.mipmap.friend_sample);
+
         TextView ramain_text = (TextView) findViewById(R.id.remain_text);
-        ramain_text.setText(getString(R.string.yen_value_text, "0"));
+        ramain_text.setText(getString(R.string.yen_value_text, "2000"));
     }
 
     private void getProfile(){
