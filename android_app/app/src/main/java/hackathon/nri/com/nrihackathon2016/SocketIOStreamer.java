@@ -17,6 +17,8 @@ public class SocketIOStreamer extends ContextSingletonBase<SocketIOStreamer> {
     private Socket mSocket;
     private Object[] values;
     private Handler mHandler;
+    public static final String SUMMARY_KEY = "summary";
+    public static final String APPROVE_KEY = "approve";
 
     public void init(Context context) {
         super.init(context);
@@ -53,12 +55,32 @@ public class SocketIOStreamer extends ContextSingletonBase<SocketIOStreamer> {
                     }
                 }
             });
-            mSocket.on("charge", new Emitter.Listener() {
+            mSocket.on(SUMMARY_KEY, new Emitter.Listener() {
                 @Override
                 public void call(Object... arg0) {
                     for(Object o : arg0){
                         if(mCallback != null) {
-                            mCallback.onCall(o.toString());
+                            mCallback.onCall(SUMMARY_KEY, o.toString());
+                        }
+                    }
+                }
+            });
+            mSocket.on(APPROVE_KEY, new Emitter.Listener() {
+                @Override
+                public void call(Object... arg0) {
+                    for(Object o : arg0){
+                        if(mCallback != null) {
+                            mCallback.onCall(SUMMARY_KEY, o.toString());
+                        }
+                    }
+                }
+            });
+            mSocket.on(SUMMARY_KEY, new Emitter.Listener() {
+                @Override
+                public void call(Object... arg0) {
+                    for(Object o : arg0){
+                        if(mCallback != null) {
+                            mCallback.onCall(SUMMARY_KEY, o.toString());
                         }
                     }
                 }
@@ -103,7 +125,7 @@ public class SocketIOStreamer extends ContextSingletonBase<SocketIOStreamer> {
     }
 
     public interface SocketIOEventCallback{
-        public void onCall(String receive);
+        public void onCall(String key, String receive);
         public void onEmit(HashMap<String, Object> emitted);
     }
 
