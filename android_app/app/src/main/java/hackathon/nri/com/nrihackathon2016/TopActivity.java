@@ -1,14 +1,17 @@
 package hackathon.nri.com.nrihackathon2016;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
 
 import com.facebook.CallbackManager;
+import com.facebook.Profile;
 
 import java.util.HashMap;
 
@@ -34,7 +37,24 @@ public class TopActivity extends Activity {
 
         ImageView top_menu_button = (ImageView) findViewById(R.id.header_menu);
         top_menu_button.setImageResource(R.mipmap.top_menu_button);
+        top_menu_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(TopActivity.this, MenuActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
 
+    private void getProfile(){
+        Profile profile = Profile.getCurrentProfile();
+        Log.d(Config.TAG, "id:" + profile.getId());
+        Log.d(Config.TAG, "fn:" + profile.getFirstName());
+        Log.d(Config.TAG, "mn:" + profile.getMiddleName());
+        Log.d(Config.TAG, "ln:" + profile.getLastName());
+        Log.d(Config.TAG, "name:" + profile.getName());
+        Log.d(Config.TAG, "link:" + profile.getLinkUri());
+        Log.d(Config.TAG, "picture:" + profile.getProfilePictureUri(298,298));
     }
 
     @Override

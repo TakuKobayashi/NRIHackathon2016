@@ -67,20 +67,6 @@ public class MainActivity extends Activity {
         }
     }
 
-    private void getProfile(){
-        Log.d(Config.TAG, "login:" + isLoggedIn());
-        if(isLoggedIn()){
-            Profile profile = Profile.getCurrentProfile();
-            Log.d(Config.TAG, "id:" + profile.getId());
-            Log.d(Config.TAG, "fn:" + profile.getFirstName());
-            Log.d(Config.TAG, "mn:" + profile.getMiddleName());
-            Log.d(Config.TAG, "ln:" + profile.getLastName());
-            Log.d(Config.TAG, "name:" + profile.getName());
-            Log.d(Config.TAG, "link:" + profile.getLinkUri());
-            Log.d(Config.TAG, "picture:" + profile.getProfilePictureUri(200,300));
-        }
-    }
-
     private void gotoNextActivity(){
         //次のactivityを実行
         Intent intent = new Intent(MainActivity.this, TopActivity.class);
