@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.facebook.CallbackManager;
 import com.facebook.Profile;
@@ -44,6 +45,12 @@ public class TopActivity extends Activity {
                 startActivity(intent);
             }
         });
+
+        ImageView card_image = (ImageView) findViewById(R.id.card_image);
+        card_image.setImageResource(R.mipmap.top_card);
+
+        TextView ramain_text = (TextView) findViewById(R.id.remain_text);
+        ramain_text.setText("0");
     }
 
     private void getProfile(){
@@ -58,8 +65,8 @@ public class TopActivity extends Activity {
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
+    protected void onStart() {
+        super.onStart();
         SocketIOStreamer.getInstance(SocketIOStreamer.class).connect(Config.ROOT_URL);
         SocketIOStreamer.getInstance(SocketIOStreamer.class).setOnReceiveCallback(new SocketIOStreamer.SocketIOEventCallback() {
             @Override
@@ -75,8 +82,8 @@ public class TopActivity extends Activity {
     }
 
     @Override
-    protected void onPause() {
-        super.onPause();
+    protected void onStop() {
+        super.onStop();
         SocketIOStreamer.getInstance(SocketIOStreamer.class).disConnect();
     }
 }

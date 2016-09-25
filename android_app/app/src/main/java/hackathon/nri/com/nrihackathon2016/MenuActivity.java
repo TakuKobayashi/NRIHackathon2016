@@ -50,7 +50,7 @@ public class MenuActivity extends Activity {
             public void onClick(View v) {
                 progressDialog = new ProgressDialog(MenuActivity.this);
                 progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-                progressDialog.setMessage("処理を実行中しています");
+                progressDialog.setMessage(getString(R.string.networking_request_dialog_message));
                 progressDialog.setCancelable(true);
                 progressDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
                     @Override
@@ -81,8 +81,7 @@ public class MenuActivity extends Activity {
                 Log.d(Config.TAG, "error:" + error.getMessage());
                 progressDialog.dismiss();
             }
-        }
-        );
+        });
         queue.add(stringRequest);
     }
 }
