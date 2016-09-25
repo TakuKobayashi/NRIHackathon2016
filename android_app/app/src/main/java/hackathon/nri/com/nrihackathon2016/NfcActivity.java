@@ -13,6 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.volley.Request;
@@ -36,6 +37,9 @@ public class NfcActivity extends Activity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nfc);
+
+        ImageView bg = (ImageView) findViewById(R.id.nfc_bg);
+        bg.setImageResource(R.mipmap.paybg);
 
         TextView nfcinfo = (TextView) findViewById(R.id.ncfinfo_text);
 /*
@@ -137,5 +141,11 @@ public class NfcActivity extends Activity {
     @Override
     public void onNewIntent(Intent intent) {
         Log.d(Config.TAG, "new Intent " + intent.getAction() + " with intent: " + intent);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ApplicationHelper.releaseImageView((ImageView) findViewById(R.id.nfc_bg));
     }
 }

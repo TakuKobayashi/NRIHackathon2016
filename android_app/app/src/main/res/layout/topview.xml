@@ -45,7 +45,38 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             />
+
+        <ImageView
+            android:id="@+id/news_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            />
     </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/kikin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/headbg"/>
+
+    <TextView
+        android:id="@+id/kikin_value_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/kikin"
+        android:textSize="30sp"
+    />
+
+    <ImageView
+        android:id="@+id/fund_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/card_image"/>
 
     <ImageView
         android:id="@+id/card_image"

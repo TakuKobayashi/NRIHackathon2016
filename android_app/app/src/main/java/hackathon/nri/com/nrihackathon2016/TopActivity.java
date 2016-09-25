@@ -3,6 +3,7 @@ package hackathon.nri.com.nrihackathon2016;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -17,8 +18,8 @@ import com.facebook.Profile;
 import java.util.HashMap;
 
 public class TopActivity extends Activity {
-    private static int REQUEST_CODE = 1;
-    private CallbackManager callbackManager;
+    private Handler handler;
+    private TextView kikin_value_text;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +27,8 @@ public class TopActivity extends Activity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.topview);
+
+        handler = new Handler();
 
         ImageView topbg = (ImageView) findViewById(R.id.topbg);
         topbg.setImageResource(R.mipmap.top_bg);
@@ -36,6 +39,17 @@ public class TopActivity extends Activity {
         ImageView header_bg = (ImageView) findViewById(R.id.header_bg);
         header_bg.setImageResource(R.mipmap.top_header);
 
+        ImageView header_friendfund = (ImageView) findViewById(R.id.header_friendfund);
+        header_friendfund.setImageResource(R.mipmap.top_friendfund);
+
+        ImageView news_btn = (ImageView) findViewById(R.id.news_btn);
+        news_btn.setImageResource(R.mipmap.news_btn);
+
+        ImageView kikin = (ImageView) findViewById(R.id.kikin);
+        kikin.setImageResource(R.mipmap.kikin_text);
+
+        kikin_value_text = (TextView) findViewById(R.id.kikin_value_text);
+
         ImageView top_menu_button = (ImageView) findViewById(R.id.header_menu);
         top_menu_button.setImageResource(R.mipmap.top_menu_button);
         top_menu_button.setOnClickListener(new View.OnClickListener() {
@@ -45,6 +59,9 @@ public class TopActivity extends Activity {
                 startActivity(intent);
             }
         });
+
+        ImageView fund_description = (ImageView) findViewById(R.id.fund_description);
+        fund_description.setImageResource(R.mipmap.fund_description);
 
         ImageView card_image = (ImageView) findViewById(R.id.card_image);
         card_image.setImageResource(R.mipmap.top_card);
@@ -69,9 +86,22 @@ public class TopActivity extends Activity {
         super.onStart();
         SocketIOStreamer.getInstance(SocketIOStreamer.class).connect(Config.ROOT_URL);
         SocketIOStreamer.getInstance(SocketIOStreamer.class).setOnReceiveCallback(new SocketIOStreamer.SocketIOEventCallback() {
+            private String mKey;
+            private String mRecieve;
+
             @Override
             public void onCall(String key, String receive) {
                 Log.d(Config.TAG, "key: " + key + " socketRecieve: " + receive);
+                mKey = key;
+                mRecieve = receive;
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        if(mKey.equals(SocketIOStreamer.SUMMARY_KEY)){
+                            kikin_value_text.setText(mRecieve);
+                        }
+                    }
+                });
             }
 
             @Override
