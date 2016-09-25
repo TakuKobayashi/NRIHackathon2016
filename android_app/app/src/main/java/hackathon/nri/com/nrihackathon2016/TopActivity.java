@@ -23,6 +23,7 @@ import java.util.HashMap;
 public class TopActivity extends Activity {
     private Handler handler;
     private TextView kikin_value_text;
+    private TextView ramain_text;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,8 +79,18 @@ public class TopActivity extends Activity {
         SharedPreferences sp = getSharedPreferences(getPackageName(), Context.MODE_PRIVATE);
         int money = sp.getInt("money", 200000);
 
-        TextView ramain_text = (TextView) findViewById(R.id.remain_text);
+        ramain_text = (TextView) findViewById(R.id.remain_text);
         ramain_text.setText(getString(R.string.yen_value_text, String.valueOf(money)));
+
+        sp.registerOnSharedPreferenceChangeListener(new SharedPreferences.OnSharedPreferenceChangeListener () {
+            @Override
+            public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+                Log.d(Config.TAG, "key:" + key + " money:" + sharedPreferences.getInt("money", 200000));
+                if (key.equals("money")) {
+                    ramain_text.setText(String.valueOf(sharedPreferences.getInt("money", 200000)));
+                }
+            }
+        });
     }
 
     private void getProfile(){
