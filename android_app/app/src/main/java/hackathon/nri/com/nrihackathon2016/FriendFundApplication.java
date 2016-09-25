@@ -12,6 +12,9 @@ public class FriendFundApplication extends Application {
 		SocketIOStreamer.getInstance(SocketIOStreamer.class).init(this);
 		FacebookSdk.sdkInitialize(getApplicationContext());
 		AppEventsLogger.activateApp(this);
+		ExtraLayout.getInstance(ExtraLayout.class).init(this);
+		ExtraLayout.getInstance(ExtraLayout.class).setBaseDisplaySize(1080, 1920);
+		ExtraLayout.getInstance(ExtraLayout.class).setDisplayPolicy(ExtraLayout.DISPLAY_POLICY_SHOW_ALL);
 	}
 
 	@Override
