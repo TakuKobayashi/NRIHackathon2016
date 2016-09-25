@@ -2,8 +2,10 @@ package hackathon.nri.com.nrihackathon2016;
 
 import android.app.Activity;
 import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.nfc.NfcAdapter;
 import android.nfc.Tag;
@@ -143,6 +145,11 @@ public class NfcActivity extends Activity {
     }
 
     private void sendChargeRequest(int value){
+        SharedPreferences sp = getSharedPreferences(getPackageName(), Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sp.edit();
+        editor.putInt("money", sp.getInt("money", 200000) - value);
+        editor.apply();
+
         RequestQueue queue = Volley.newRequestQueue(this);
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, Config.ROOT_URL + "rest/pay?charge=" + value,

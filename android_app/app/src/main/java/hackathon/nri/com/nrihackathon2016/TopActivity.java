@@ -1,7 +1,9 @@
 package hackathon.nri.com.nrihackathon2016;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.media.Image;
 import android.os.Bundle;
 import android.os.Handler;
@@ -73,8 +75,11 @@ public class TopActivity extends Activity {
         ImageView social_image = (ImageView) findViewById(R.id.social_image);
         social_image.setImageResource(R.mipmap.social_sample);
 
+        SharedPreferences sp = getSharedPreferences(getPackageName(), Context.MODE_PRIVATE);
+        int money = sp.getInt("money", 200000);
+
         TextView ramain_text = (TextView) findViewById(R.id.remain_text);
-        ramain_text.setText(getString(R.string.yen_value_text, "2000"));
+        ramain_text.setText(getString(R.string.yen_value_text, String.valueOf(money)));
     }
 
     private void getProfile(){

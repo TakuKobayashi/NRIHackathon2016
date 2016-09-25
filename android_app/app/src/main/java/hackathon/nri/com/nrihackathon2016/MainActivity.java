@@ -1,7 +1,9 @@
 package hackathon.nri.com.nrihackathon2016;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Handler;
 import android.os.Message;
 import android.os.Bundle;
@@ -65,7 +67,12 @@ public class MainActivity extends Activity {
                 }
             });
         }
-
+        SharedPreferences sp = getSharedPreferences(getPackageName(), Context.MODE_PRIVATE);
+        if(!sp.contains("money")){
+            SharedPreferences.Editor editor = sp.edit();
+            editor.putInt("money", 200000);
+            editor.apply();
+        }
     }
 
     private void gotoNextActivity(){
