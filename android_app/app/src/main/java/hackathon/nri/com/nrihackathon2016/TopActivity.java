@@ -67,7 +67,7 @@ public class TopActivity extends Activity {
         card_image.setImageResource(R.mipmap.top_card);
 
         TextView ramain_text = (TextView) findViewById(R.id.remain_text);
-        ramain_text.setText("0");
+        ramain_text.setText(getString(R.string.yen_value_text, "0"));
     }
 
     private void getProfile(){
@@ -98,7 +98,7 @@ public class TopActivity extends Activity {
                     @Override
                     public void run() {
                         if(mKey.equals(SocketIOStreamer.SUMMARY_KEY)){
-                            kikin_value_text.setText(mRecieve);
+                            kikin_value_text.setText(getString(R.string.yen_value_text, mRecieve));
                         }
                     }
                 });
