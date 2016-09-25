@@ -20,6 +20,7 @@
         />
 
     <RelativeLayout
+        android:id="@+id/header_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true">
@@ -54,6 +55,13 @@
             android:layout_centerVertical="true"
             />
     </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/social_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/header_layout"/>
 
     <ImageView
         android:id="@+id/kikin"

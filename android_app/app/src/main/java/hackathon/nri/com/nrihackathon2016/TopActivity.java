@@ -70,6 +70,9 @@ public class TopActivity extends Activity {
         ImageView friends_list = (ImageView) findViewById(R.id.friends_list);
         friends_list.setImageResource(R.mipmap.friend_sample);
 
+        ImageView social_image = (ImageView) findViewById(R.id.social_image);
+        social_image.setImageResource(R.mipmap.social_sample);
+
         TextView ramain_text = (TextView) findViewById(R.id.remain_text);
         ramain_text.setText(getString(R.string.yen_value_text, "2000"));
     }
