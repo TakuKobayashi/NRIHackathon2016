@@ -5,14 +5,14 @@
     android:layout_height="match_parent">
 
     <ImageView
-        android:id="@+id/menubg"
+        android:id="@+id/newsbg"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         />
 
     <ImageView
-        android:id="@+id/close_button"
+        android:id="@+id/news_close_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -20,9 +20,9 @@
         />
 
     <ImageView
-        android:id="@+id/approve_button"
+        android:id="@+id/help_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        android:layout_alignBottom="@+id/newsbg"
         />
 </RelativeLayout>

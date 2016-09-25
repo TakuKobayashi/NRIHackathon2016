@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.Surface;
 import android.webkit.WebView;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -160,6 +161,11 @@ public class ApplicationHelper {
 			sbuf.append(" " + i + ":" + hex);
 		}
 		return sbuf.toString();
+	}
+
+	public static void showToast(Context con, String message) {
+		Toast toast = Toast.makeText(con, message, Toast.LENGTH_LONG);
+		toast.show();
 	}
 
 	public static String encodeToJPEGbase64(Bitmap image)

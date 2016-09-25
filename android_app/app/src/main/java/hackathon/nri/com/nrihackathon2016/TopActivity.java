@@ -99,6 +99,11 @@ public class TopActivity extends Activity {
                     public void run() {
                         if(mKey.equals(SocketIOStreamer.SUMMARY_KEY)){
                             kikin_value_text.setText(getString(R.string.yen_value_text, mRecieve));
+                        }else if(mKey.equals(SocketIOStreamer.APPROVE_KEY)){
+                            if(!isFinishing()){
+                                Intent intent = new Intent(TopActivity.this, NewsActivity.class);
+                                startActivity(intent);
+                            }
                         }
                     }
                 });

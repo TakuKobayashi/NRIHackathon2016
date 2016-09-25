@@ -3,7 +3,6 @@ package hackathon.nri.com.nrihackathon2016;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -17,10 +16,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.facebook.CallbackManager;
-import com.facebook.Profile;
-
-import java.util.HashMap;
 
 public class MenuActivity extends Activity {
     private ProgressDialog progressDialog;
@@ -43,9 +38,9 @@ public class MenuActivity extends Activity {
             }
         });
 
-        ImageView help_button = (ImageView) findViewById(R.id.help_button);
-        help_button.setImageResource(R.mipmap.help_btn);
-        help_button.setOnClickListener(new View.OnClickListener() {
+        ImageView approve_button = (ImageView) findViewById(R.id.approve_button);
+        approve_button.setImageResource(R.mipmap.approve_btn);
+        approve_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 progressDialog = new ProgressDialog(MenuActivity.this);
