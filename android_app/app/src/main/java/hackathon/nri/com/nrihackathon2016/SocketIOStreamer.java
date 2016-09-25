@@ -70,7 +70,7 @@ public class SocketIOStreamer extends ContextSingletonBase<SocketIOStreamer> {
                 public void call(Object... arg0) {
                     for(Object o : arg0){
                         if(mCallback != null) {
-                            mCallback.onCall(SUMMARY_KEY, o.toString());
+                            mCallback.onCall(APPROVE_KEY, o.toString());
                         }
                     }
                 }
