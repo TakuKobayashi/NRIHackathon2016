@@ -1,9 +1,13 @@
 package hackathon.nri.com.nrihackathon2016;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.ImageView;
 
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
@@ -21,15 +25,20 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends Activity {
     private static int REQUEST_CODE = 1;
     private CallbackManager callbackManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ApplicationHelper.requestPermissions(this, REQUEST_CODE);
+
+        ImageView bg = (ImageView) findViewById(R.id.sprash_background);
+        bg.setImageResource(R.mipmap.bg);
 
         LoginButton loginButton = (LoginButton) findViewById(R.id.login_button);
         loginButton.setReadPermissions("email", "public_profile");
@@ -106,5 +115,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         SocketIOStreamer.getInstance(SocketIOStreamer.class).disConnect();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ApplicationHelper.releaseImageView((ImageView) findViewById(R.id.sprash_background));
     }
 }
