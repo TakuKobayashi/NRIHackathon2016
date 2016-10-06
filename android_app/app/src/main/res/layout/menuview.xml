@@ -9,6 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
+        android:scaleType="fitXY"
         />
 
     <ImageView
@@ -22,7 +23,8 @@
     <ImageView
         android:id="@+id/approve_button"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        android:layout_height="match_parent"
+        android:layout_below="@id/menubg"
+        android:scaleType="fitXY"
         />
 </RelativeLayout>

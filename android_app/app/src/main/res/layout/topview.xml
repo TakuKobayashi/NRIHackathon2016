@@ -14,9 +14,10 @@
 
     <ImageView
         android:id="@+id/headbg"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
+        android:scaleType="fitXY"
         />
 
     <RelativeLayout
@@ -27,8 +28,9 @@
 
         <ImageView
             android:id="@+id/header_bg"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:scaleType="fitXY"
         />
 
         <ImageView
@@ -37,6 +39,8 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
             />
 
         <ImageView
@@ -107,6 +111,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
+        android:textColor="#FFFFFFFF"
         android:textSize="30sp"
     />
 </RelativeLayout>
